@@ -6,7 +6,8 @@ class Square:
     """Represents a square with private instance attributes: size and position."""
 
     def __init__(self, size=0, position=(0, 0)):
-        """Initializes an instance of the Square class with optional size and position.
+        """
+        Initializes an instance of the Square class with optional size and position.
 
         Args:
             size (int, optional): The size of the square (default 0).
@@ -25,7 +26,8 @@ class Square:
 
     @size.setter
     def size(self, value):
-        """Set the size of the square with type and value validation.
+        """
+        Set the size of the square with type and value validation.
 
         Args:
             value (int): The size to set.
@@ -47,7 +49,8 @@ class Square:
 
     @position.setter
     def position(self, value):
-        """Set the position of the square with type and value validation.
+        """
+        Set the position of the square with type and value validation.
 
         Args:
             value (tuple): The position to set.
