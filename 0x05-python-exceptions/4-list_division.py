@@ -3,39 +3,24 @@ def list_division(my_list_1, my_list_2, list_length):
     result = []
     for i in range(list_length):
         try:
-            val_1 = my_list_1[i] if i < len(my_list_1) else 0
-            val_2 = my_list_2[i] if i < len(my_list_2) else 0
-
-            if isinstance(val_1, (int, float)) and isinstance(val_2, (int, float)):
-                if val_2 == 0:
-                    raise ZeroDivisionError("division by 0")
-                result.append(val_1 / val_2)
-            else:
+            val1 = my_list_1[i] if i < len(my_list_1) else 0
+            val2 = my_list_2[i] if i < len(my_list_2) else 0
+            if not isinstance(val1, (int, float))
+            or not isinstance(val2, (int, float)):
                 raise TypeError("wrong type")
-
-        except ZeroDivisionError as e:
-            print(e)
+            if val2 == 0:
+                raise ZeroDivisionError("division by 0")
+            division = val1 / val2
+            result.append(division)
+        except ZeroDivisionError:
+            print("division by 0")
             result.append(0)
-        except TypeError as e:
-            print(e)
+        except TypeError:
+            print("wrong type")
             result.append(0)
-        except IndexError as e:
+        except IndexError:
             print("out of range")
             result.append(0)
         finally:
             pass
-
     return result
-
-# Test cases
-my_l_1 = [10, 8, 4]
-my_l_2 = [2, 4, 4]
-result = list_division(my_l_1, my_l_2, max(len(my_l_1), len(my_l_2)))
-print(result)
-
-print("--")
-
-my_l_1 = [10, 8, 4, 4]
-my_l_2 = [2, 0, "H", 2, 7]
-result = list_division(my_l_1, my_l_2, max(len(my_l_1), len(my_l_2)))
-print(result)
