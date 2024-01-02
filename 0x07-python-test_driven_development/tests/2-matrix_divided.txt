@@ -1,0 +1,57 @@
+>>> matrix_divided = __import__('2-matrix_divided').matrix_divided
+
+# Test Case 1: Dividing a matrix by a number (integer)
+>>> matrix = [
+...     [1, 2, 3],
+...     [4, 5, 6]
+... ]
+>>> matrix_divided(matrix, 3)
+[[0.33, 0.67, 1.0], [1.33, 1.67, 2.0]]
+>>> matrix  # Ensuring the original matrix is unchanged
+[[1, 2, 3], [4, 5, 6]]
+
+# Test Case 2: Dividing a matrix by a number (float)
+>>> matrix = [
+...     [9.8, 7.6],
+...     [3.4, 5.2]
+... ]
+>>> matrix_divided(matrix, 2.5)
+[[3.92, 3.04], [1.36, 2.08]]
+
+# Test Case 3: Dividing a matrix by 1 (identity matrix)
+>>> matrix = [
+...     [10, 20],
+...     [30, 40],
+...     [50, 60]
+... ]
+>>> matrix_divided(matrix, 1)
+[[10.0, 20.0], [30.0, 40.0], [50.0, 60.0]]
+
+# Test Case 4: Dividing a matrix by 0 should raise ZeroDivisionError
+>>> matrix = [
+...     [1, 2],
+...     [3, 4]
+... ]
+>>> matrix_divided(matrix, 0)
+Traceback (most recent call last):
+    ...
+ZeroDivisionError: division by zero
+
+# Test Case 5: Dividing a non-matrix should raise TypeError
+>>> matrix = "This is not a matrix"
+>>> matrix_divided(matrix, 2)
+Traceback (most recent call last):
+    ...
+TypeError: matrix must be a matrix of integers/floats
+
+# Test Case 6: Dividing a matrix with rows of different sizes should raise TypeError
+>>> matrix = [
+...     [1, 2],
+...     [3, 4, 5],
+...     [6, 7, 8]
+... ]
+>>> matrix_divided(matrix, 2)
+Traceback (most recent call last):
+    ...
+TypeError: Each row of the matrix must have the same size
+

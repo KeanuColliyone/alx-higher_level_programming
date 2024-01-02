@@ -1,0 +1,30 @@
+>>> add_integer = __import__('0-add_integer').add_integer
+
+# Test Case 1: Adding two integers
+>>> add_integer(1, 2)
+3
+
+# Test Case 2: Adding positive and negative integers
+>>> add_integer(100, -2)
+98
+
+# Test Case 3: Adding an integer and the default value
+>>> add_integer(2)
+100
+
+# Test Case 4: Adding a float and an integer
+>>> add_integer(100.3, -2)
+98
+
+# Test Case 5: Adding an integer and a non-integer should raise TypeError
+>>> add_integer(4, "School")
+Traceback (most recent call last):
+    ...
+TypeError: a must be an integer or b must be an integer
+
+# Test Case 6: Adding None should raise TypeError
+>>> add_integer(None)
+Traceback (most recent call last):
+    ...
+TypeError: a must be an integer or b must be an integer
+
