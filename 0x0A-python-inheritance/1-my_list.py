@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""Defines an inherited class MyList"""
+
+
 class MyList(list):
     """Subclass of list with a method to print sorted elements."""
 
