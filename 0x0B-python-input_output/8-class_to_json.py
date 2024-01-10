@@ -12,4 +12,3 @@ def class_to_json(obj):
             serializable_dict[key] = value
 
     return serializable_dict
-
