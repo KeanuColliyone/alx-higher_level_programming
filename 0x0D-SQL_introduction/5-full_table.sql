@@ -1,4 +1,8 @@
 -- Description: Print the full description of the first_table from the specified database.
-SELECT COLUMN_NAME, COLUMN_TYPE, IS_NULLABLE, COLUMN_KEY
-FROM INFORMATION_SCHEMA.COLUMNS
-WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'first_table';
+SELECT
+    table_name AS `Table`,
+    GROUP_CONCAT(column_name ORDER BY ordinal_position) AS `Columns`
+FROM
+    information_schema.columns
+WHERE
+    table_schema = DATABASE() AND table_name = 'first_table';
