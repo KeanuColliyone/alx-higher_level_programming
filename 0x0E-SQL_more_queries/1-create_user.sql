@@ -1,20 +1,6 @@
--- Check if the user exists and create if it does not
-DELIMITER $$
-
-CREATE PROCEDURE EnsureUserExists()
-BEGIN
-  IF NOT EXISTS (SELECT 1 FROM mysql.user WHERE user = 'user_0d_1') THEN
-    CREATE USER 'user_0d_1'@'localhost' IDENTIFIED BY 'user_0d_1_pwd';
-  END IF;
-END$$
-
-DELIMITER ;
-
-CALL EnsureUserExists();
-DROP PROCEDURE IF EXISTS EnsureUserExists;
-
--- Grant all privileges
+-- Attempt to create the user. This will fail if the user already exists, but that's fine.
+CREATE USER IF NOT EXISTS 'user_0d_1'@'localhost' IDENTIFIED BY 'user_0d_1_pwd';
+-- Grant all privileges to the user on all databases.
 GRANT ALL PRIVILEGES ON *.* TO 'user_0d_1'@'localhost' WITH GRANT OPTION;
-
--- Flush privileges to ensure the changes take effect
+-- Apply changes immediately
 FLUSH PRIVILEGES;
