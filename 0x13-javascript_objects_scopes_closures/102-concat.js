@@ -1,14 +1,27 @@
-#!/usr/bin/node
-
 const fs = require('fs');
 
-const [, , sourceFile1, sourceFile2, destinationFile] = process.argv;
+const [, , fileAPath, fileBPath, fileCPath] = process.argv;
 
-const content1 = fs.readFileSync(sourceFile1, 'utf8');
-const content2 = fs.readFileSync(sourceFile2, 'utf8');
+fs.readFile(fileAPath, 'utf8', (err, fileAData) => {
+  if (err) {
+    console.error(`Error reading ${fileAPath}: ${err}`);
+    return;
+  }
 
-const concatenatedContent = content1 + '\n' + content2;
+  fs.readFile(fileBPath, 'utf8', (err, fileBData) => {
+    if (err) {
+      console.error(`Error reading ${fileBPath}: ${err}`);
+      return;
+    }
 
-fs.writeFileSync(destinationFile, concatenatedContent);
+    const concatenatedData = fileAData + fileBData;
 
-console.log(`Concatenation successful. Result written to ${destinationFile}`);
+    fs.writeFile(fileCPath, concatenatedData, (err) => {
+      if (err) {
+        console.error(`Error writing to ${fileCPath}: ${err}`);
+        return;
+      }
+      console.log(`Concatenation successful. Output written to ${fileCPath}`);
+    });
+  });
+});
