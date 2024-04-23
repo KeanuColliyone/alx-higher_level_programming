@@ -1,29 +1,40 @@
 #!/usr/bin/node
+'use strict';
 
 const fs = require('fs');
+const process = require('process');
 
-const [, , fileAPath, fileBPath, fileCPath] = process.argv;
+const [fileA, fileB, fileC] = process.argv.slice(2);
 
-fs.readFile(fileAPath, 'utf8', (err, fileAData) => {
-  if (err) {
-    console.error(`Error reading ${fileAPath}: ${err}`);
-    return;
-  }
+if (!fileA || !fileB || !fileC) {
+  console.error('Usage: ./102-concat.js <fileA> <fileB> <fileC>');
+  process.exit(1);
+}
 
-  fs.readFile(fileBPath, 'utf8', (err, fileBData) => {
+function concatFiles (source1, source2, destination) {
+  fs.readFile(source1, 'utf8', (err, data1) => {
     if (err) {
-      console.error(`Error reading ${fileBPath}: ${err}`);
+      console.error(`Error reading ${source1}: ${err}`);
       return;
     }
 
-    const concatenatedData = fileAData + fileBData;
-
-    fs.writeFile(fileCPath, concatenatedData, (err) => {
+    fs.readFile(source2, 'utf8', (err, data2) => {
       if (err) {
-        console.error(`Error writing to ${fileCPath}: ${err}`);
+        console.error(`Error reading ${source2}: ${err}`);
         return;
       }
-      console.log(`Concatenation successful. Output written to ${fileCPath}`);
+
+      const combinedData = `${data1}\n${data2}`;
+
+      fs.writeFile(destination, combinedData, (err) => {
+        if (err) {
+          console.error(`Error writing to ${destination}: ${err}`);
+        } else {
+          console.log(`Files ${source1} and ${source2} were concatenated into ${destination}`);
+        }
+      });
     });
   });
-});
+}
+
+concatFiles(fileA, fileB, fileC);
