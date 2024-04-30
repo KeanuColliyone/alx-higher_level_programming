@@ -12,7 +12,7 @@ def list_states(username, password, dbname):
     """
     Connects to a MySQL database and lists all states in the database.
     """
-    db = MySQLdb.connect(host="localhost", port=3306, user=username, passwd=password, db=dbname)
+    db = MySQLdb.connect(host="localhost", port=3306, user=username, passwd=password, db=database)
     cur = db.cursor()
     cur.execute("SELECT * FROM states ORDER BY id ASC")
     states = cur.fetchall()
